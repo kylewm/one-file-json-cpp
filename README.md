@@ -6,6 +6,11 @@ It has been lightly tested (parsing more so than formatting). This
 example demonstrates how to read a top-level Object, grab a list from
 one of the properties, and traverse the list of numbers.
 
+Attempts to adhere to the JSON standard with the addition of C++-style
+comments (prefixed with //). JsonParser was originally written to read
+configuration files -- while there should not be any impediments to
+performance, it has not been tested with performance in mind.
+
 ```cpp
 #include "JsonParser.h"
 
