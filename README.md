@@ -1,34 +1,31 @@
 JsonParser
 ==========
 
-author: Kyle Mahan
+A quick-and-dirty one-file reader/writer for a JSON-formatted string. 
+It has been lightly tested (parsing more so than formatting). This
+example demonstrates how to read a top-level Object, grab a list from
+one of the properties, and traverse the list of numbers.
 
-date: 2013-Jan-11
+```cpp
+#include "JsonParser.h"
 
-A quick-and-dirty parser for a JSON-formatted string. It has been
-lightly tested (parsing more so than formatting). This example
-demonstrates how to read a top-level Object, grab a list from one of
-the properties, and traverse the list of numbers.
+Json::Object* root
+if (!Json::read(string, root)) {
+  // inform error
+}
 
+Json::Array* list;
+if (!root->get(propertyName, list)) {
+  // inform error
+}
 
-    #include "JsonParser.h"
+for (size_t ii = 0 ; ii < list->size() ; ++ii) {
+  Json::Number* val;
+  if(!list->get(ii, val)) {
+    // inform error
+  }
+  cout << val->value() << endl;
+}
 
-    Json::Object* root
-    if (!Json::read(string, root)) {
-      // inform error
-    }
-    
-    Json::Array* list;
-    if (!root->get(propertyName, list)) {
-      // inform error
-    }
-    
-    for (size_t ii = 0 ; ii < list->size() ; ++ii) {
-      Json::Number* val;
-      if(!list->get(ii, val)) {
-        // inform error
-      }
-      cout << val->value() << endl;
-    }
-  
-    delete root;
+delete root;
+```
