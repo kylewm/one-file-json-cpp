@@ -423,7 +423,7 @@ namespace Json
 
     inline void formatBoolean(const Boolean* bo, std::stringstream& out)
     {
-      out << bo->value() ? "true" : "false";
+      out << (bo->value() ? "true" : "false");
     }
 
     inline void formatArray(const Array* arr, std::stringstream& out)
